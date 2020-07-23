@@ -295,58 +295,83 @@ $(".tooltip-wrap .close-btn").on("click", function(e){
     $(".tooltip-btn[href='"+ tooltipId +"']").removeClass("open");
 })
 
+// 배너 이동 버튼 연속 클릭 시 오류 방지
+var clickFlag = true;
+function doubleClickPrevent(){
+    clickFlag = false;
+    setTimeout(function(){
+        clickFlag = true;
+    }, 300)
+}
+
 // Special KDB의 카드배너 좌우 이동 버튼
 $(".spcial-banner-wrap .right-btn").on("click", function(){
-    var cardLength = $(".rolling-banner li").length;
-    var cardWidth = $(".rolling-banner li").outerWidth();
-    var bannerPosi = $(".rolling-banner").position().left;
-    if( - (bannerPosi - cardWidth * 4) <= (cardWidth * cardLength)){
-    $(".rolling-banner").stop().animate({"left": bannerPosi - cardWidth}, 300);
-    $(".right-btn button").css({"cursor":"pointer"});
-}
-else{
-    $(".right-btn button").css({"cursor":"default"});
-}
+    if(clickFlag){
+        var cardLength = $(".rolling-banner li").length;
+        var cardWidth = $(".rolling-banner li").outerWidth();
+        var bannerPosi = $(".rolling-banner").position().left;
+        if( - (bannerPosi - cardWidth * 4) <= (cardWidth * cardLength)){
+            $(".rolling-banner").animate({"left": bannerPosi - cardWidth}, 300);
+            $(".right-btn button").css({"cursor":"pointer"});
+            doubleClickPrevent();
+        }else{
+            $(".right-btn button").css({"cursor":"default"});
+        }
+    }
+    
+    
 })
 
 $(".spcial-banner-wrap .left-btn").on("click", function(){
-    var cardLength = $(".rolling-banner li").length;
-    var cardWidth = $(".rolling-banner li").outerWidth();
-    var bannerPosi = $(".rolling-banner").position().left;
-    if( - (bannerPosi - cardWidth * 5) >= (cardWidth * cardLength)){
-    $(".rolling-banner").stop().animate({"left": bannerPosi + cardWidth}, 300);
-    $(".left-btn button").css({"cursor":"pointer"});
-}
-else{
-    $(".left-btn button").css({"cursor":"default"});
-}
+    if(clickFlag){
+        var cardLength = $(".rolling-banner li").length;
+        var cardWidth = $(".rolling-banner li").outerWidth();
+        var bannerPosi = $(".rolling-banner").position().left;
+        if( - (bannerPosi - cardWidth * 5) >= (cardWidth * cardLength)){
+            $(".rolling-banner").stop().animate({"left": bannerPosi + cardWidth}, 300);
+            $(".left-btn button").css({"cursor":"pointer"});
+            doubleClickPrevent();
+            }
+        else{
+            $(".left-btn button").css({"cursor":"default"});
+        }
+    }
+    
+    
+    
 })
 
 // Special KDB의 메뉴배너의 좌우 이동 버튼
 $(".rolling-menu-wrap .right-btn").on("click", function(){
-    var cardLength = $(".rolling-menu li").length;
-    var cardWidth = $(".rolling-menu li").outerWidth();
-    var bannerPosi = $(".rolling-menu").position().left;
-    if( - (bannerPosi - cardWidth * 5) <= (cardWidth * cardLength)){
-    $(".rolling-menu").stop().animate({"left": bannerPosi - cardWidth}, 300);
-    $(".right-btn button").css({"cursor":"pointer"});
-}
-else{
-    $(".right-btn button").css({"cursor":"default"});
-}
+    if(clickFlag){
+        var cardLength = $(".rolling-menu li").length;
+        var cardWidth = $(".rolling-menu li").outerWidth();
+        var bannerPosi = $(".rolling-menu").position().left;
+        if( - (bannerPosi - cardWidth * 5) <= (cardWidth * cardLength)){
+            $(".rolling-menu").stop().animate({"left": bannerPosi - cardWidth}, 300);
+            $(".right-btn button").css({"cursor":"pointer"});
+            doubleClickPrevent();
+        }
+        else{
+            $(".right-btn button").css({"cursor":"default"});
+        }
+    }
 })
 
 $(".rolling-menu-wrap .left-btn").on("click", function(){
-    var cardLength = $(".rolling-menu li").length;
-    var cardWidth = $(".rolling-menu li").outerWidth();
-    var bannerPosi = $(".rolling-menu").position().left;
-    if( - (bannerPosi - cardWidth * 7) >= (cardWidth * cardLength)){
-    $(".rolling-menu").stop().animate({"left": bannerPosi + cardWidth}, 300);
-    $(".left-btn button").css({"cursor":"pointer"});
-}
-else{
-    $(".left-btn button").css({"cursor":"default"});
-}
+    if(clickFlag){
+        var cardLength = $(".rolling-menu li").length;
+        var cardWidth = $(".rolling-menu li").outerWidth();
+        var bannerPosi = $(".rolling-menu").position().left;
+        if( - (bannerPosi - cardWidth * 7) >= (cardWidth * cardLength)){
+            $(".rolling-menu").stop().animate({"left": bannerPosi + cardWidth}, 300);
+            $(".left-btn button").css({"cursor":"pointer"});
+            doubleClickPrevent();
+        }
+        else{
+            $(".left-btn button").css({"cursor":"default"});
+        }
+    }
 })
 
 // 메뉴 클릭 시 화면 이동
